@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Speed = 5;
+    public float Speed = 10;
     private Rigidbody rgbody;
 
     private Vector3 Player_Pos;
@@ -21,17 +21,18 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        rgbody.AddForce(x * Speed,0, z* Speed);
+        rgbody.velocity = new Vector3(x * Speed, 0, z * Speed);
 
         Vector3 diff = transform.position - Player_Pos;
+   
 
-        if (diff.magnitude > 0.01f)
+        if (diff.magnitude > 0.07f)
         {
 
             transform.rotation = Quaternion.LookRotation(diff);
-           
+          
         }
-       
+      
         Player_Pos = transform.position;
     }
 }
